@@ -1,7 +1,7 @@
 # Serial2MIDI
 
 This CLI tool allows you to "convert" your serial device to virtual midi device. It also supports sending midi back to the serial device.
-You can use this tool with ALSA & Jack.
+You can use this tool with ALSA & Jack. This tool is handy with micro controller like arduino uno/mega which don't support USB Midi.
 
 
 # Install
