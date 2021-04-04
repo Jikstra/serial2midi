@@ -1,8 +1,15 @@
 # Serial2MIDI
 
 This CLI tool allows you to "convert" your serial device to virtual midi device. It also supports sending midi back to the serial device.
-You can use this tool with ALSA & Jack. This tool is handy with micro controller like arduino uno/mega which don't support USB Midi.
+You can use this tool with ALSA & Jack. This tool is handy with microcontrollers like arduino uno/mega which don't support USB Midi.
 
+
+## Features
+
+- Supports ALSA & Jack as audio backends
+- You can set name & baud rate
+- Full duplex, this means you can not only receive midi but also send midi back to the serial device
+- Auto reconnect, if you disconnect the serial device, the virtual midi device is still there and continues working if you plug the serial device in again 
 
 # Install
 
@@ -39,4 +46,8 @@ optional arguments:
 ```
 
 
+# Hacking
 
+## Logging
+
+Currently you can change the log level by manually adjusting the `LOG_LEVELS` array. 
