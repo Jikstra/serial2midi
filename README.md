@@ -4,6 +4,23 @@ This CLI tool allows you to "convert" your serial device to virtual midi device.
 You can use this tool with ALSA & Jack.
 
 
+# Install
+
+## Arch
+
+There is a PKGBUILD in the [AUR](https://aur.archlinux.org/packages/serial2midi-git/). Download it and install it like any other PKGBUILD or use an AUR helper like yay.
+
+`yay -S serial2midi-git`
+
+## From git
+
+1. Clone this repository `git clone https://github.com/jikstra/serial2midi.git`
+2. cd into the folder `cd serial2midi`
+3. install python dependencies with `pip install -r dependencies.txt`
+4. run the tool with `python main.py`
+5. Copy it to your path, for example `cp main.py /usr/bin/serial2midi`
+6. No you can run it just by running `serial2midi`
+
 # Usage
 ```
 usage: serial2midi [-h] [--name NAME] [--baud-rate BAUD_RATE] [--sleep-interval SLEEP_INTERVAL] DEVICE
