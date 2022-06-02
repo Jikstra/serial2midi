@@ -10,6 +10,36 @@ You can use this tool with ALSA & Jack. This tool is handy with microcontrollers
 - You can set name & baud rate
 - Full duplex, this means you can not only receive midi but also send midi back to the serial device
 - Auto reconnect, if you disconnect the serial device, the virtual midi device is still there and continues working if you plug the serial device in again 
+- use python expression to match your device
+- supports midi sysex identity, usb pid/vid...
+
+
+## Examples
+
+Convert `/dev/ttyUSB0` to a midi device
+```
+serial2midi --match "device_info.device_path == '/dev/ttyUSB0'"
+```
+
+List all connected usb serial devices and it's properties
+```
+serial2midi --list
+```
+
+Filter the list of all connected usb serials for the ones that contain "USB2.0" in the description string
+```
+serial2midi --list --match "device_info.usb_description.find('USB2.0') != -1"
+```
+
+Convert usb serial device with usb product id 29987 to a virtual midi device with the name "MidiFoo"
+```
+serial2midi --name "MidiFoo" --match "device_info.usb_pid == 29987"
+```
+
+Set the baudrate
+```
+serial2midi --baud-rate 96000 --name "MidiFoo" --match "device_info.usb_pid == 29987"
+```
 
 # Install
 
@@ -29,20 +59,28 @@ There is a PKGBUILD in the [AUR](https://aur.archlinux.org/packages/serial2midi-
 
 # Usage
 ```
-usage: serial2midi [-h] [--name NAME] [--baud-rate BAUD_RATE] [--sleep-interval SLEEP_INTERVAL] DEVICE
+usage: serial2midi [-h] [--name NAME] [--baud-rate BAUD_RATE]
+                   [--sleep-interval SLEEP_INTERVAL] [--match EVAL_MATCH]
+                   [--list]
 
 Convert a USB Serial device to a Midi device
 
-positional arguments:
-  DEVICE                Path to the serial device
-
-optional arguments:
+options:
   -h, --help            show this help message and exit
-  --name NAME           Name of the virtual midi device (default: Serial2MIDI)
+  --name NAME           Name of the virtual midi device (default:
+                        Serial2MIDI)
   --baud-rate BAUD_RATE
                         Baud rate of serial device (default: 115200)
   --sleep-interval SLEEP_INTERVAL
-                        How many seconds we wait between looking for reconnected device. Float is possible. (default: 0.3)
+                        How many seconds we wait between looking for
+                        reconnected device. Float is possible. (default:
+                        0.3)
+  --match EVAL_MATCH    Use a python expression to find matching devices.
+                        See --list for a list of available properties.
+                        Example:
+                        --match="device_info.midi_identity.manufacturer ==
+                        '0x6f'" (default: None)
+  --list                List available devices (default: False)
 ```
 
 
