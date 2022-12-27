@@ -1,3 +1,5 @@
+# WARNING: Development continued here: https://codeberg.org/obsoleszenz/serial2midi
+
 # Serial2MIDI
 
 This CLI tool allows you to "convert" your serial device to virtual midi device. It also supports sending midi back to the serial device.
